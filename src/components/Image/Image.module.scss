@@ -1,0 +1,8 @@
+.picItem{
+  transition: transform 350ms linear,left 350ms linear;
+  will-change: transform left;
+  // cubic-bezier(0.60, 0.0, 0.10, 1.0)
+  img{
+    border-radius: 10px;
+  }
+}

@@ -1,0 +1,39 @@
+.carrousel{
+  position: relative;
+  display: block;
+  list-style: none;
+  width: 650px;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+
+  li{
+    position: absolute;
+  }
+
+  // 按钮区
+  .btnArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 350ms linear;
+
+    &:hover{
+      background-color: #9e9e9e4d;
+    }
+
+    &:hover img{
+      opacity: 1;
+    }
+
+    // 按钮图片
+    img{
+      width: 100px;
+      position: absolute;
+      vertical-align: middle;
+      opacity: 0;
+      transition: opacity 350ms ease-in-out,transform 350ms ease-in-out;
+    }
+  }
+
+}
