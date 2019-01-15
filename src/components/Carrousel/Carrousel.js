@@ -10,7 +10,7 @@ import Styles from './Carrousel.module.scss';
 
 /**
  * @constructor <Carrousel />
- * @function 旋转木马组件入口
+ * @function 旋转木马组件
  */
 export default class Carrousel extends React.PureComponent{
   constructor(props){

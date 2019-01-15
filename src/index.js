@@ -1,7 +1,7 @@
 import React,{ Fragment } from 'react';
 import ReactDOM from 'react-dom';
 
-import Carrousel,{ Image } from './components/index';
+import Carrousel,{ Image } from './components/Carrousel/index';
 
 
 const App=()=>{
