@@ -1,8 +1,10 @@
 node_modules/
 src/
 dist/
+static/
+README.md
 .babelrc
-webpack.config.js
+webpack.lib.config.js
 webpack.dev.config.js
 webpack.test.config.js
 yarn-error.log

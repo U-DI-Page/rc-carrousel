@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports={
   mode: 'production',
-  entry: path.resolve(__dirname, 'src/components/index.js'),
+  entry: path.resolve(__dirname, 'src/components/Carrousel/index.js'),
   output:{
     filename: '[name].js',
     path: path.resolve(__dirname, 'lib'),
