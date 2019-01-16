@@ -3,8 +3,8 @@ import Proptypes from 'prop-types';
 
 import { getBoxMember } from './util';
 // 图片
-import leftPic from './left.png';
-import rightPic from './right.png';
+import leftPic from './assets/left.png';
+import rightPic from './assets/right.png';
 // 样式
 import Styles from './Carrousel.module.scss';
 
@@ -16,20 +16,23 @@ export default class Carrousel extends React.PureComponent{
   constructor(props){
     super(...arguments);
 
-    const imageArr = props.children().props.children;
-    // console.log(imageArr)
+    const { perSideNum, width, perSideWidth, scale, imageArr } = props;
+    const imageWidth = width - 2 * perSideWidth;
+
     this.state={
       ...this.getAreaBox(0, imageArr),
 
       imageArr,
       notClick:false,
-      // 通过children 获得 图片数组
       // 组件属性
-      perSideNum: props.perSideNum,
-      width: props.width,
-      imageWidth: props.imageWidth,
-      scale: props.scale
-    }
+      perSideNum,
+      width,
+      perSideWidth,
+      imageWidth,
+      scale
+    };
+
+    this.carrousel = React.createRef();
   }
 
   componentDidMount(){
@@ -66,8 +69,8 @@ export default class Carrousel extends React.PureComponent{
     if(this.state.notClick) return;
     this.setState({ notClick:true })
 
-    const { center:c, left:l, right:r, imageArr } = this.state;
-    const { onNextClick } = this.props;
+    const { center:c, left:l, right:r } = this.state;
+    const { onNextClick, imageArr } = this.props;
     const last = imageArr.length - 1;
     // 中间 图片索引
     const center = imageArr[c - 1] ? c - 1 : last;
@@ -83,7 +86,7 @@ export default class Carrousel extends React.PureComponent{
     });
 
     this.setState({ center, left, right },()=>{
-      typeof onNextClick === 'function' && onNextClick(center);
+      typeof onNextClick === 'function' && onNextClick(imageArr[center]);
     });
   }
 
@@ -93,8 +96,8 @@ export default class Carrousel extends React.PureComponent{
     if(this.state.notClick) return;
     this.setState({ notClick:true });
 
-    const { center:c, left:l, right:r, imageArr } = this.state;
-    const { onPreClick } = this.props;
+    const { center:c, left:l, right:r } = this.state;
+    const { onPreClick, imageArr } = this.props;
     // 中间 图片索引
     const center = imageArr[c + 1] ? c + 1 : 0;
     // 左边 图片索引集合
@@ -109,7 +112,7 @@ export default class Carrousel extends React.PureComponent{
     });
 
     this.setState({ center, left, right }, ()=>{
-      typeof onPreClick === 'function' && onPreClick(center);
+      typeof onPreClick === 'function' && onPreClick(imageArr[center]);
     });
   }
 
@@ -140,28 +143,29 @@ export default class Carrousel extends React.PureComponent{
   }
 
   render(){
-    const { width, imageWidth } = this.props;
+    const { width, perSideWidth, height } = this.props;
     const { perSideNum } = this.state;
     // 计算按钮区域宽度 位置
-    const perSideW = (width - imageWidth) / 2;
+    // const perSideW = (width - imageWidth) / 2;
     const zIndex = perSideNum + 1;
 
     const leftSideStyle = {
       left: 0,
-      width: perSideW,
-      height: '100%',
+      width: perSideWidth,
+      height,
       zIndex
     };
     
     const rightSideStyle = {
       right: 0,
-      width: perSideW,
-      height: '100%',
+      width: perSideWidth,
+      height,
       zIndex
     }
-    
+
     return (
       <ul 
+        ref={ this.carrousel }
         style={{ width }}
         className={ Styles.carrousel }
         onMouseEnter={ this.handleMouseEnter }

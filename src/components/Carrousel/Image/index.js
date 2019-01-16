@@ -14,12 +14,23 @@ export default class Image extends React.Component{
   constructor(props){
     super(...arguments);
 
-    this.state={ cStyle:getImageStyle(props) };
+    this.state = { cStyle: getImageStyle(props) };
+
+    this.img = React.createRef();
   }
 
   static getDerivedStateFromProps(nProps, preState){
-    // console.log(nProps.index, getImageStyle(nProps))
-    return { cStyle:getImageStyle(nProps) };
+    return { cStyle: getImageStyle(nProps) };
+  }
+
+
+  // 图片加载完成
+  handleImgOnLoad=()=>{
+    const { index, center, setContainerHeight } = this.props;
+
+    if(index === center){
+      setContainerHeight && setContainerHeight(this.img.current.clientHeight);
+    }
   }
 
   render(){
@@ -28,13 +39,22 @@ export default class Image extends React.Component{
 
     return(
       <li style={ cStyle } className={ Styles.picItem }>
-        <img width={ imageWidth } src={ src } />
+        <img 
+          ref={ this.img } 
+          width={ imageWidth } 
+          src={ src } 
+          onLoad={ this.handleImgOnLoad }
+        />
       </li>
     )
   }
 }
 
 Image.propTypes={
-  //图片路径
-  src: Proptypes.string.isRequired
+  // 图片路径
+  src: Proptypes.string.isRequired,
+  // 索引
+  index: Proptypes.number.isRequired,
+  // 重置容器高度方法
+  setContainerHeight: Proptypes.func.isRequired
 }

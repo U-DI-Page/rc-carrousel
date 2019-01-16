@@ -3,12 +3,13 @@
   display: block;
   list-style: none;
   width: 650px;
-  height: 300px;
+  height: auto;
   margin: 0;
   padding: 0;
 
   li{
     position: absolute;
+    white-space: nowrap;
   }
 
   // 按钮区

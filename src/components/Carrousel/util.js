@@ -1,3 +1,7 @@
+// 获取中间位置图片的高度 作为组件的高度
+export const getCenterImageHeight=(liArr)=>{
+
+}
 
 // 计算左边区域 索引集合
 export const getBoxMember=(index, perSize, size, align)=>{
@@ -29,7 +33,7 @@ export const getBoxMember=(index, perSize, size, align)=>{
 export const getImageStyle=(props)=>{
   const { 
     width, imageWidth, perSideNum, scale,
-    center, left, right,
+    center, left, right, perSideWidth
   } = props;
   const align = getImgAlign(props.index, center, left, right);
 
@@ -37,16 +41,16 @@ export const getImageStyle=(props)=>{
 
   switch(align.name){
     case 'left': 
-      cStyle = getLeftImgsStyle(align.index, width, imageWidth, perSideNum, scale); 
+      cStyle = getLeftImgsStyle(align.index, perSideNum, scale, perSideWidth); 
       break;
     case 'right': 
-      cStyle = getRightImgsStyle(align.index, width, imageWidth, perSideNum, scale); 
+      cStyle = getRightImgsStyle(align.index, width, imageWidth, perSideNum, scale, perSideWidth); 
       break;
     case 'center': 
-      cStyle = getCurrentStyle(width, imageWidth, perSideNum); 
+      cStyle = getCurrentStyle(perSideNum, perSideWidth); 
       break;
     default:
-      cStyle = getRestImgStyle(width, imageWidth); 
+      cStyle = getRestImgStyle(); 
       break;
   }
 
@@ -54,20 +58,18 @@ export const getImageStyle=(props)=>{
 }
 
 // 当前居中图片样式
-const getCurrentStyle=(width, imageWidth, num)=>{
-  const left = (width - imageWidth) / 2;
+const getCurrentStyle=(num, perSideWidth)=>{
 
   return{
-    left,
+    left: perSideWidth,
     zIndex: num + 1
   }
 }
 
 // 获取左半部分 图片样式
-const getLeftImgsStyle=(index, width, imageWidth, num, s)=>{
+const getLeftImgsStyle=(index, num, s, perSideW)=>{
   const reverserIndex = num - index + 1;
   const scale = Math.pow(s, index);
-  const perSideW = (width-imageWidth) / 2;
   const dWidth = perSideW /num;
   const left = (reverserIndex - 1) * dWidth * scale;
   const opacity = calulateOpacity(reverserIndex, num);
@@ -82,10 +84,9 @@ const getLeftImgsStyle=(index, width, imageWidth, num, s)=>{
 }
 
 // 获取右半部分图片样式
-const getRightImgsStyle=(index, width, imageWidth, num, s)=>{
+const getRightImgsStyle=(index, width, imageWidth, num, s, perSideW)=>{
   const reverserIndex = num - index; // 3 2 1
   const scale = Math.pow(s, index);
-  const perSideW = (width-imageWidth) / 2;
   const dWidth = perSideW / num;
   const left = width - dWidth * reverserIndex * scale -imageWidth;
   const opacity = calulateOpacity(index, num);
@@ -100,11 +101,9 @@ const getRightImgsStyle=(index, width, imageWidth, num, s)=>{
 }
 
 // 剩余图片样式
-const getRestImgStyle=(width, imageWidth)=>{
-  const left = (width - imageWidth) / 2;
+const getRestImgStyle=()=>{
 
   return {
-    // left,
     transform:'scale(0)'
   }
 }

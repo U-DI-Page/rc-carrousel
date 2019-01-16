@@ -9,7 +9,7 @@
     "build": "webpack --config webpack.lib.config.js",
     "example:build": "webpack --config webpack.dev.config.js",
     "compile": "NODE_ENV=production babel src/components --out-dir lib",
-    "start": "webpack-dev-server --config webpack.dev.config.js"
+    "start": "webpack-dev-server --progress --config webpack.dev.config.js"
   },
   "devDependencies": {
     "autoprefixer": "^9.4.4",

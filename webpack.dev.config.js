@@ -3,8 +3,8 @@ const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const OpenWebpackPlugin = require('open-browser-webpack-plugin');
-const PORT = '9000';
+// const OpenWebpackPlugin = require('open-browser-webpack-plugin');
+const PORT = 9000;
 
 module.exports={
   mode: 'production',
@@ -17,11 +17,12 @@ module.exports={
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
     clientLogLevel: "none",
-    noInfo: true,
-    // open: true,
+    // noInfo: true,
+    open: true,
     quiet:true,
     port: PORT
   },
+  devtool: 'inline-source-map',
   module : {
     rules : [
       {
@@ -55,12 +56,13 @@ module.exports={
         use:{
           loader:'babel-loader',
           options:{
-            cacheDirectory:true
+            cacheDirectory: true,
+            sourceMap: true
           }
         }
       }, {
         test: /\.(png|svg|jpg|gif|jpeg)$/,
-        include: [path.resolve(__dirname, 'src')],
+        include: [ path.resolve(__dirname, 'src') ],
         use: [
           {
             // 将图片转为base64
@@ -108,11 +110,12 @@ module.exports={
       to: './static/'
     }]),
     
-    new OpenWebpackPlugin({
-      url: `http://localhost:${ PORT }`
-    }),
+    // new OpenWebpackPlugin({
+    //   url: `http://localhost:${ PORT }`
+    // }),
 
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
   ]
 
 }
