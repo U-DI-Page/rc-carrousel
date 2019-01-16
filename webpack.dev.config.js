@@ -17,9 +17,10 @@ module.exports={
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
     clientLogLevel: "none",
-    // noInfo: true,
+    // noInfo: true, // 启动时和每次保存之后，那些显示的 webpack 包(bundle)信息」的消息将被隐藏
     open: true,
-    quiet:true,
+    quiet:true, // 控制台不输出信息启用 quiet 后，除了初始启动信息之外的任何内容都不会被打印到控制台。这也意味着来自 webpack 的错误或警告在控制台不可见
+    overlay:true, // 全屏报错
     port: PORT
   },
   devtool: 'inline-source-map',
