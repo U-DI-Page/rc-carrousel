@@ -73,7 +73,9 @@ Portal.propTypes={
   // 右滑 回调
   onNextClick: Proptypes.func,
   // 左滑 回调
-  onPreClick: Proptypes.func
+  onPreClick: Proptypes.func,
+  // 切换回调
+  onChange: propTypes.func
 }
 
 Portal.defaultProps={

@@ -70,7 +70,7 @@ export default class Carrousel extends React.PureComponent{
     this.setState({ notClick:true })
 
     const { center:c, left:l, right:r } = this.state;
-    const { onNextClick, imageArr } = this.props;
+    const { onNextClick, onChange , imageArr } = this.props;
     const last = imageArr.length - 1;
     // 中间 图片索引
     const center = imageArr[c - 1] ? c - 1 : last;
@@ -87,6 +87,7 @@ export default class Carrousel extends React.PureComponent{
 
     this.setState({ center, left, right },()=>{
       typeof onNextClick === 'function' && onNextClick(imageArr[center]);
+      typeof onchange === 'function' && onChange(imageArr[center]);
     });
   }
 
@@ -97,7 +98,7 @@ export default class Carrousel extends React.PureComponent{
     this.setState({ notClick:true });
 
     const { center:c, left:l, right:r } = this.state;
-    const { onPreClick, imageArr } = this.props;
+    const { onPreClick,onChange , imageArr } = this.props;
     // 中间 图片索引
     const center = imageArr[c + 1] ? c + 1 : 0;
     // 左边 图片索引集合
@@ -113,6 +114,7 @@ export default class Carrousel extends React.PureComponent{
 
     this.setState({ center, left, right }, ()=>{
       typeof onPreClick === 'function' && onPreClick(imageArr[center]);
+      typeof onchange === 'function' && onChange(imageArr[center]);
     });
   }
 
