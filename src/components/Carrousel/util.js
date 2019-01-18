@@ -33,7 +33,7 @@ export const getBoxMember=(index, perSize, size, align)=>{
 export const getImageStyle=(props)=>{
   const { 
     width, imageWidth, perSideNum, scale,
-    center, left, right, perSideWidth
+    center, left, right, perSideWidth, gradient
   } = props;
   const align = getImgAlign(props.index, center, left, right);
 
@@ -41,10 +41,10 @@ export const getImageStyle=(props)=>{
 
   switch(align.name){
     case 'left': 
-      cStyle = getLeftImgsStyle(align.index, perSideNum, scale, perSideWidth); 
+      cStyle = getLeftImgsStyle(gradient, align.index, perSideNum, scale, perSideWidth); 
       break;
     case 'right': 
-      cStyle = getRightImgsStyle(align.index, width, imageWidth, perSideNum, scale, perSideWidth); 
+      cStyle = getRightImgsStyle(gradient, align.index, width, imageWidth, perSideNum, scale, perSideWidth); 
       break;
     case 'center': 
       cStyle = getCurrentStyle(perSideNum, perSideWidth); 
@@ -67,12 +67,12 @@ const getCurrentStyle=(num, perSideWidth)=>{
 }
 
 // 获取左半部分 图片样式
-const getLeftImgsStyle=(index, num, s, perSideW)=>{
+const getLeftImgsStyle=(gradient, index, num, s, perSideW)=>{
   const reverserIndex = num - index + 1;
   const scale = Math.pow(s, index);
   const dWidth = perSideW /num;
   const left = (reverserIndex - 1) * dWidth * scale;
-  const opacity = calulateOpacity(reverserIndex, num);
+  const opacity =gradient ? calulateOpacity(index, num) : 1;
 
   return {
     left,
@@ -84,12 +84,12 @@ const getLeftImgsStyle=(index, num, s, perSideW)=>{
 }
 
 // 获取右半部分图片样式
-const getRightImgsStyle=(index, width, imageWidth, num, s, perSideW)=>{
+const getRightImgsStyle=(gradient, index, width, imageWidth, num, s, perSideW)=>{
   const reverserIndex = num - index; // 3 2 1
   const scale = Math.pow(s, index);
   const dWidth = perSideW / num;
   const left = width - dWidth * reverserIndex * scale -imageWidth;
-  const opacity = calulateOpacity(index, num);
+  const opacity =gradient ? calulateOpacity(index, num) : 1;
 
   return {
     left,

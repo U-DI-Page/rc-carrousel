@@ -62,6 +62,8 @@ Portal.propTypes={
   perSideNum: Proptypes.number.isRequired,
   // 两侧宽度
   perSideWidth: Proptypes.number,
+  // 两侧透明度渐变
+  gradient: Proptypes.bool,
 
   // 自动轮播
   autoPlay: Proptypes.bool,
@@ -75,7 +77,7 @@ Portal.propTypes={
   // 左滑 回调
   onPreClick: Proptypes.func,
   // 切换回调
-  onChange: propTypes.func
+  onChange: Proptypes.func
 }
 
 Portal.defaultProps={

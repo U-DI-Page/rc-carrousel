@@ -33,12 +33,13 @@ const App=()=>{
       perSideNum={ 3 }
       scale={ 0.8 }
       imageArr={ imageArr }
-      onNextClick={(i)=>{
+      gradient={ true }
+      onChange={(i)=>{
         console.log(i)
       }}
-      onPreClick={(i)=>{
-        console.log(i)
-      }}
+      // onPreClick={(i)=>{
+      //   console.log(i)
+      // }}
       />
   )
 }

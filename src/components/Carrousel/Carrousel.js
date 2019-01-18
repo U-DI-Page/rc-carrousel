@@ -16,7 +16,7 @@ export default class Carrousel extends React.PureComponent{
   constructor(props){
     super(...arguments);
 
-    const { perSideNum, width, perSideWidth, scale, imageArr } = props;
+    const { perSideNum, width, perSideWidth, scale, imageArr, gradient } = props;
     const imageWidth = width - 2 * perSideWidth;
 
     this.state={
@@ -29,7 +29,8 @@ export default class Carrousel extends React.PureComponent{
       width,
       perSideWidth,
       imageWidth,
-      scale
+      scale,
+      gradient
     };
 
     this.carrousel = React.createRef();
@@ -87,7 +88,7 @@ export default class Carrousel extends React.PureComponent{
 
     this.setState({ center, left, right },()=>{
       typeof onNextClick === 'function' && onNextClick(imageArr[center]);
-      typeof onchange === 'function' && onChange(imageArr[center]);
+      typeof onChange === 'function' && onChange(imageArr[center]);
     });
   }
 
@@ -114,7 +115,7 @@ export default class Carrousel extends React.PureComponent{
 
     this.setState({ center, left, right }, ()=>{
       typeof onPreClick === 'function' && onPreClick(imageArr[center]);
-      typeof onchange === 'function' && onChange(imageArr[center]);
+      typeof onChange === 'function' && onChange(imageArr[center]);
     });
   }
 
@@ -129,7 +130,7 @@ export default class Carrousel extends React.PureComponent{
 
   // 监听动画结束事件
   handleTransitionEnd=()=>{
-    this.setState({ notClick:false })
+    this.setState({ notClick:false });
   }
 
   // 鼠标移入事件
