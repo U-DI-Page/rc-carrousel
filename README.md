@@ -2,6 +2,8 @@
 
 想写个应用发现没找到react旋转木马这种类型的轮播图组件，于是就自己写了一个;
 
+演示地址： https://fourpig.github.io/rc-carrousel/.
+
 应用，一款萌萌哒星座运势chrome插件
 
 (https://github.com/FourPig/constellation)
