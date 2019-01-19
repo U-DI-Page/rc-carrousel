@@ -185,7 +185,6 @@ export default class Carrousel extends React.PureComponent{
         </li>
           {/* 图片组 */}
           {this.props.children(this.state)}
-          {/* { this.renderImgArr() } */}
         {/* 右边按钮区域 */}
         <li 
           style={ rightSideStyle } 
