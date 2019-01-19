@@ -2,6 +2,10 @@
 
 想写个应用发现没找到react旋转木马这种类型的轮播图组件，于是就自己写了一个;
 
+应用，一款萌萌哒星座运势chrome插件
+
+(https://github.com/FourPig/constellation)
+
 > react@16.7
 
 ## 开始使用
@@ -64,9 +68,12 @@
 | perSideNum | `Number` 两侧显示图片数 | `2` |
 | scale | `Number` 两侧图片缩放比 | `0.8` |
 | gradient | `Boolean` 两侧图片透明度渐变 | `false` |
+| align | `String` 两侧图片位置 `'top' || 'center' || 'bottom'` | `false` |
 | autoPlay | `Boolean` 是否开启自动轮播 | `false` |
 | autoDirect | `Boolean` 自动轮播方向 | `right` |
 | autoPlayDelay | `Boolean` 自动轮播时间间隔 | `2` |
+| imageArr | `Array` 图片数组`[{title:'',src:''}]` | `2` |
+| ---  | --- | --- |
 | onNextClick | `Function` 点击向右 回调 | `(img)=>{console.log(img);//返回中间图片信息对象}` |
 | onPreClick | `Function` 点击向左 回调 | `(img)=>{console.log(img);//返回中间图片信息对象}` |
 | onChange | `Function` 图片切换 回调 | `(img)=>{console.log(img);//返回中间图片信息对象}` |
