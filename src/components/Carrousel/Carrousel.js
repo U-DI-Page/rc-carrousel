@@ -170,7 +170,7 @@ export default class Carrousel extends React.PureComponent{
     return (
       <ul 
         ref={ this.carrousel }
-        style={{ width }}
+        style={{ width,height }}
         className={ Styles.carrousel }
         onMouseEnter={ this.handleMouseEnter }
         onMouseLeave={ this.handleMouseLeave }

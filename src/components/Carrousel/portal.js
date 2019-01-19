@@ -89,7 +89,7 @@ Portal.defaultProps={
 
   autoPlay: false,
   autoDirect: 'right',
-  autoPlayDelay: 2,
+  autoPlayDelay: 2000,
 
   onNextClick: (e)=>{},
   onPreClick: (e)=>{}
