@@ -38,9 +38,6 @@ const App=()=>{
       onChange={(i)=>{
         console.log(i)
       }}
-      // onPreClick={(i)=>{
-      //   console.log(i)
-      // }}
       />
   )
 }
