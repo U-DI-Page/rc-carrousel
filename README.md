@@ -72,7 +72,7 @@
 | autoPlay | `Boolean` 是否开启自动轮播 | `false` |
 | autoDirect | `Boolean` 自动轮播方向 | `right` |
 | autoPlayDelay | `Boolean` 自动轮播时间间隔 | `2` |
-| imageArr | `Array` 图片数组`[{title:'',src:''}]` | `2` |
+| imageArr | `Array` 图片数组`[{title:'',src:''}]` | `null` |
 | ---  | --- | --- |
 | onNextClick | `Function` 点击向右 回调 | `(img)=>{console.log(img);//返回中间图片信息对象}` |
 | onPreClick | `Function` 点击向左 回调 | `(img)=>{console.log(img);//返回中间图片信息对象}` |
