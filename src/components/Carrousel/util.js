@@ -1,8 +1,3 @@
-// 获取中间位置图片的高度 作为组件的高度
-export const getCenterImageHeight=(liArr)=>{
-
-}
-
 // 计算左边区域 索引集合
 export const getBoxMember=(index, perSize, size, align)=>{
   let result=[];
@@ -33,18 +28,19 @@ export const getBoxMember=(index, perSize, size, align)=>{
 export const getImageStyle=(props)=>{
   const { 
     width, imageWidth, perSideNum, scale,
-    center, left, right, perSideWidth, gradient
+    center, left, right, perSideWidth, gradient,
+    align
   } = props;
-  const align = getImgAlign(props.index, center, left, right);
+  const imgAlign = getImgAlign(props.index, center, left, right);
 
   let cStyle = {};
 
-  switch(align.name){
+  switch(imgAlign.name){
     case 'left': 
-      cStyle = getLeftImgsStyle(gradient, align.index, perSideNum, scale, perSideWidth); 
+      cStyle = getLeftImgsStyle(align, gradient, imgAlign.index, perSideNum, scale, perSideWidth); 
       break;
     case 'right': 
-      cStyle = getRightImgsStyle(gradient, align.index, width, imageWidth, perSideNum, scale, perSideWidth); 
+      cStyle = getRightImgsStyle(align, gradient, imgAlign.index, width, imageWidth, perSideNum, scale, perSideWidth); 
       break;
     case 'center': 
       cStyle = getCurrentStyle(perSideNum, perSideWidth); 
@@ -67,7 +63,7 @@ const getCurrentStyle=(num, perSideWidth)=>{
 }
 
 // 获取左半部分 图片样式
-const getLeftImgsStyle=(gradient, index, num, s, perSideW)=>{
+const getLeftImgsStyle=(align, gradient, index, num, s, perSideW)=>{
   const reverserIndex = num - index + 1;
   const scale = Math.pow(s, index);
   const dWidth = perSideW /num;
@@ -78,13 +74,13 @@ const getLeftImgsStyle=(gradient, index, num, s, perSideW)=>{
     left,
     opacity,
     transform: `scale(${scale})`,
-    transformOrigin: '0',
+    transformOrigin: `0 ${ getSideAlign(align) } 0`,
     zIndex: reverserIndex
   }
 }
 
 // 获取右半部分图片样式
-const getRightImgsStyle=(gradient, index, width, imageWidth, num, s, perSideW)=>{
+const getRightImgsStyle=(align, gradient, index, width, imageWidth, num, s, perSideW)=>{
   const reverserIndex = num - index; // 3 2 1
   const scale = Math.pow(s, index);
   const dWidth = perSideW / num;
@@ -96,7 +92,7 @@ const getRightImgsStyle=(gradient, index, width, imageWidth, num, s, perSideW)=>
     opacity,
     transform:`scale(${scale})`,
     zIndex: reverserIndex,
-    transformOrigin:'100% center 0'
+    transformOrigin:`100% ${ getSideAlign(align) } 0`
   }
 }
 
@@ -126,4 +122,14 @@ const getImgAlign=(index, center, left, right)=>{
 // 规律计算透明度
 const calulateOpacity=(index, num)=>{
   return (100 - index * (30/num)) / 100;
+}
+
+// 获取两侧图片位置
+const getSideAlign=(align)=>{
+  const box = ['center', 'top', 'bottom'];
+
+  if(box.includes(align)){
+    return align;
+  }
+  return 'center';
 }

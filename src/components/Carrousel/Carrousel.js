@@ -16,7 +16,7 @@ export default class Carrousel extends React.PureComponent{
   constructor(props){
     super(...arguments);
 
-    const { perSideNum, width, perSideWidth, scale, imageArr, gradient } = props;
+    const { perSideNum, width, perSideWidth, scale, imageArr, gradient, align } = props;
     const imageWidth = width - 2 * perSideWidth;
 
     this.state={
@@ -30,7 +30,8 @@ export default class Carrousel extends React.PureComponent{
       perSideWidth,
       imageWidth,
       scale,
-      gradient
+      gradient,
+      align
     };
 
     this.carrousel = React.createRef();

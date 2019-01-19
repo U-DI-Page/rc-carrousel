@@ -32,6 +32,7 @@ const App=()=>{
       perSideWidth={ 150 }
       perSideNum={ 3 }
       scale={ 0.8 }
+      align="bottom"
       imageArr={ imageArr }
       gradient={ true }
       onChange={(i)=>{
