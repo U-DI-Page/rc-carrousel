@@ -7,7 +7,9 @@
 安装
 
 > npm i rc-carrousel -S 
+
 > 或者
+
 > yarn add rc-carrousel -S
 
 使用：
