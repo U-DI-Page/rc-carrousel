@@ -42,6 +42,7 @@ body{
     .showArea{
       margin-top: 20px;
       margin-bottom: 20px;
+      flex-shrink: 1;
     }
 
     // 横排显示
@@ -49,7 +50,7 @@ body{
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
 
       div{
         margin-right: 15px;
